@@ -36,7 +36,7 @@ public class PlayerView : MonoBehaviour {
             mouseY = 0.0F;
             MaxXAxisRotationToValue(90.0F);
         }
-        transform.Rotate(-Vector3.left * mouseY);
+        transform.Rotate(Vector3.left * mouseY);
         // We rotate the whole player to get the Y rotation view
         player.Rotate(Vector3.up * mouseX);
     }
