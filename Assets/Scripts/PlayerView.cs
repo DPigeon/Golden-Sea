@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class PlayerView : MonoBehaviour {
     [SerializeField]
-    private string mouseXInputName, mouseYInputName;
+    private string mouseXInputName = "", mouseYInputName = "";
     [SerializeField]
-    private float mouseSensitivity;
+    private float mouseSensitivity = 0.0F;
 
     [SerializeField]
     Transform player = null;
