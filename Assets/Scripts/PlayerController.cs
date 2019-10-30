@@ -9,6 +9,8 @@ public class PlayerController : MonoBehaviour {
     string verticalInput = "";
     [SerializeField]
     float movementSpeed = 0.0F;
+    [SerializeField]
+    Camera cameraView = null;
 
     CharacterController playerController;
 
@@ -26,6 +28,9 @@ public class PlayerController : MonoBehaviour {
         float vertical = Input.GetAxis(verticalInput) * movementSpeed;
         Vector3 right = transform.right * horizontal;
         Vector3 forward = transform.forward * vertical;
+
+        // To allow all movements, we must also move in up.
+        float cameraAngle = cameraView.transform.rotation.x;
 
         playerController.SimpleMove(forward + right); // Moves our component
     }
