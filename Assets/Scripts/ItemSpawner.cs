@@ -47,7 +47,7 @@ public class ItemSpawner : MonoBehaviour {
             spawnRate = Random.Range(2, 6);
             randomX = Random.Range(-coordsX, coordsX);
             randomZ = Random.Range(-coordsZ, coordsZ);
-            spawnedPosition = new Vector3(randomX, -25, randomZ);
+            spawnedPosition = new Vector3(randomX, -24.9F, randomZ);
             float randomItem = Random.Range(-1, 3);
 
             if (randomItem == 0) {
@@ -59,7 +59,8 @@ public class ItemSpawner : MonoBehaviour {
                 Destroy(mediumBar, aliveMediumBarTime);
             }
             else if (randomItem == 2) {
-                GameObject bag = Instantiate(GoldenLotPrefab, spawnedPosition, Quaternion.identity) as GameObject;
+                Vector3 rotation = new Vector3(90, 0, 0);
+                GameObject bag = Instantiate(GoldenLotPrefab, spawnedPosition, Quaternion.Euler(rotation)) as GameObject;
                 Destroy(bag, aliveBagTime);
             }
 
