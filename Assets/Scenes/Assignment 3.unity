@@ -232,7 +232,7 @@ Light:
   serializedVersion: 8
   m_Type: 1
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 0.1
+  m_Intensity: 0.6
   m_Range: 10
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -544,6 +544,7 @@ MonoBehaviour:
   mouseXInputName: Mouse X
   mouseYInputName: Mouse Y
   mouseSensitivity: 150
+  swimSpeed: 2
   player: {fileID: 1274131089}
 --- !u!1 &603766200
 GameObject:
@@ -1044,7 +1045,7 @@ PrefabInstance:
     - target: {fileID: 8857845895794985614, guid: d6fdd08044f5aec46a5c130d28baff2c,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.3523874
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 8857845895794985614, guid: d6fdd08044f5aec46a5c130d28baff2c,
         type: 3}
@@ -1264,6 +1265,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1800147886}
   - component: {fileID: 1800147885}
+  - component: {fileID: 1800147884}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -1271,6 +1273,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1800147884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1800147883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e2d2641d10549e4b9f441fe5945dae2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!20 &1800147885
 Camera:
   m_ObjectHideFlags: 0
@@ -1295,10 +1309,10 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 94.65776
   orthographic: 0
   orthographic size: 5
-  m_Depth: 0
+  m_Depth: 2
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295

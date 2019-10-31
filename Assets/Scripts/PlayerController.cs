@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour {
     [SerializeField]
     string verticalInput = "";
     [SerializeField]
-    float movementSpeed = 0.0F;
+    float movementSpeed = 2.0F;
     [SerializeField]
     Camera cameraView = null;
 
@@ -28,11 +28,13 @@ public class PlayerController : MonoBehaviour {
         float vertical = Input.GetAxis(verticalInput) * movementSpeed;
         Vector3 right = transform.right * horizontal;
         Vector3 forward = transform.forward * vertical;
-
-        // To allow all movements, we must also move in up.
-        float cameraAngle = cameraView.transform.rotation.x;
-
         playerController.SimpleMove(forward + right); // Moves our component
+
+        if (Input.GetButton("Swim")) {
+            cameraView.transform.Translate((cameraView.transform.forward - transform.forward) * Time.deltaTime * 1.0F, Space.World);
+            //transform.Translate(transform.forward * Time.deltaTime, Space.World);
+            playerController.SimpleMove(forward + right);
+        }
     }
 
     private void CheckBoundaries() {
