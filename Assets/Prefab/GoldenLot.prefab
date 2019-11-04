@@ -3706,6 +3706,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6236314314531415557}
   - component: {fileID: 6236314314538666373}
+  - component: {fileID: 114877047813787270}
+  - component: {fileID: 6604682101639208448}
   m_Layer: 0
   m_Name: GoldenLot
   m_TagString: Untagged
@@ -3794,3 +3796,33 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114877047813787270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6236314314531388389}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03c6da087ba69fe46abd3c4d526f16a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SmallGoldenBar: {fileID: 7954083792874111046, guid: 8ea71c50a80b7784d9a534a5dac90f56,
+    type: 3}
+  MediumGoldenBar: {fileID: 4903679364373989755, guid: 523fd31d0685341498d13a4cc1a87a7c,
+    type: 3}
+  GoldenLot: {fileID: 68019730330018533, guid: 2600c27c501c3f54cb8157cd72e23420, type: 3}
+--- !u!65 &6604682101639208448
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6236314314531388389}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.89880896, y: 0.5698192, z: 0.40215674}
+  m_Center: {x: 0.00086545944, y: -0.012979731, z: 0.00024488568}

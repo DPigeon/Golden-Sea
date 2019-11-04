@@ -50,4 +50,17 @@ public class PlayerController : MonoBehaviour {
         else if (transform.position.x > limit)
             transform.position = new Vector3(-limit, transform.position.y, transform.position.z);
     }
+
+    public void IncreaseSpeed(float number) {
+        movementSpeed = movementSpeed + number;
+    }
+
+    public void DecreaseSpeed(float number) {
+        movementSpeed = movementSpeed - number;
+    }
+
+    public void ResetSpeed() {
+        movementSpeed = 5.0F;
+    }
+
 }

@@ -11,7 +11,9 @@ GameObject:
   - component: {fileID: 405898953112620873}
   - component: {fileID: 405898953109753705}
   - component: {fileID: 405898953110719913}
+  - component: {fileID: 114527910178954600}
   - component: {fileID: 405898953103368361}
+  - component: {fileID: 6815269061190112872}
   m_Layer: 0
   m_Name: SmallGoldenBar
   m_TagString: Untagged
@@ -78,6 +80,23 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &114527910178954600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 405898953112720233}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03c6da087ba69fe46abd3c4d526f16a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SmallGoldenBar: {fileID: 7954083792874111046, guid: 8ea71c50a80b7784d9a534a5dac90f56,
+    type: 3}
+  MediumGoldenBar: {fileID: 4903679364373989755, guid: 523fd31d0685341498d13a4cc1a87a7c,
+    type: 3}
+  GoldenLot: {fileID: 68019730330018533, guid: 2600c27c501c3f54cb8157cd72e23420, type: 3}
 --- !u!95 &405898953103368361
 Animator:
   serializedVersion: 3
@@ -97,3 +116,16 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!65 &6815269061190112872
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 405898953112720233}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.30893272, y: 0.11254528, z: 0.13443832}
+  m_Center: {x: 0.001767464, y: 0.0031990241, z: 0.00046769163}
