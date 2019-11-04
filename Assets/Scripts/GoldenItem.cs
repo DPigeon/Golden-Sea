@@ -19,9 +19,9 @@ public class GoldenItem : MonoBehaviour {
 
     Vector3 collectedItemPosition;
     Vector2 nitroCollectedPosition = new Vector3(3.00F, 4.57F, 0.0F);
-    float speedDecreaseSmallBar = 0.4F;
-    float speedDecreaseMediumBar = 0.5F;
-    float speedDecreaseLot = 0.8F;
+    float speedDecreaseSmallBar = 1.0F;
+    float speedDecreaseMediumBar = 1.5F;
+    float speedDecreaseLot = 2.5F;
     int scoreSmallBar = 1;
     int scoreMediumBar = 2;
     int scoreLot = 10;
