@@ -670,6 +670,8 @@ MonoBehaviour:
   speed: 4
   spawnedPositionY: 0
   enemySpawner: {fileID: 0}
+  PrefabProjectile: {fileID: 2584521086634950945, guid: 8361e76582fcc7647bea02258ab654db,
+    type: 3}
 --- !u!65 &392173780579784685
 BoxCollider:
   m_ObjectHideFlags: 0

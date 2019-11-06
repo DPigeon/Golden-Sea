@@ -3,6 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Whale : Enemy {
+    [SerializeField]
+    GameObject PrefabProjectile = null;
+
+    float projectileDuration = 10.0F;
+    float projectileSpeed = 2.0F;
+    float nextProjectileSpawn = 0.0F;
+    float projectileFrequency = 0.0F;
 
     public override void Start() {
         base.Start();
@@ -12,8 +19,24 @@ public class Whale : Enemy {
 
     public override void Update() {
         base.Update();
+        projectileFrequency = Random.Range(3, 7);
         transform.Translate(-Vector3.forward * speed * Time.deltaTime);
+        HandleProjectiles();
         CheckBoundaries();
+    }
+
+    private void HandleProjectiles() {
+        if (Time.time > nextProjectileSpawn) {
+            nextProjectileSpawn = Time.time + projectileFrequency;
+            ShootProjectile();
+        }
+    }
+
+    private void ShootProjectile() {
+        GameObject projectileObject = Instantiate(PrefabProjectile, transform.position, Quaternion.identity) as GameObject;
+        Projectile projectile = projectileObject.GetComponent<Projectile>();
+        //projectileSound.Play();
+        Destroy(projectileObject, projectileDuration);
     }
 
     public override float GetSpeed() {
