@@ -31,9 +31,7 @@ public class PlayerController : MonoBehaviour {
         playerController.SimpleMove(forward + right); // Moves our component
 
         if (Input.GetButton("Swim")) {
-            cameraView.transform.Translate((cameraView.transform.forward - transform.forward) * Time.deltaTime * 1.0F, Space.World);
-            //transform.Translate(transform.forward * Time.deltaTime, Space.World);
-            playerController.SimpleMove(forward + right);
+            transform.position += cameraView.transform.forward * Time.deltaTime * 10.0F;
         }
     }
 

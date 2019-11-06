@@ -25,7 +25,7 @@ public class Boat : MonoBehaviour {
         //bringToBoatSound = audioSources[1];
     }
 
-    void OnTriggerEnter2D(Collider2D collider) {
+    void OnTriggerEnter(Collider collider) {
         if (itemsCollected.Count != 0 && collider.gameObject.name == "Player") {
             //bringToBoatSound.Play();
             if (itemsCollected[itemsCollected.Count - 1] == 1) {
