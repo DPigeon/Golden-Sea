@@ -18,11 +18,6 @@ public class EnemySpawner : MonoBehaviour {
     float whaleLimit = 30.0F; // in Z
     float planeLimit = 23.0F; // in XY plane
 
-    float leftScreenX = -7.0F;
-    float leftScreenY1 = 2.20F;
-    float leftScreenY2 = -4.15F;
-    float rightScreenX = 7.0F;
-
     float offsetXLeft = 0.0F;
     float offsetXRight = 0.0F;
 
