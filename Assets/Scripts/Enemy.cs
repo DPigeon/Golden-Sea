@@ -7,10 +7,10 @@ public class Enemy : MonoBehaviour {
     public float speed; // Will increase after a fixed time hinting towards change of level
     public float spawnedPositionY;
 
-    //public EnemySpawner enemySpawner;
+    public EnemySpawner enemySpawner;
 
     public virtual void Start() {
-        //enemySpawner = GameObject.Find("EnemySpawner").GetComponent<EnemySpawner>();
+        enemySpawner = GameObject.Find("EnemySpawner").GetComponent<EnemySpawner>();
     }
 
     public virtual void Update() {
@@ -29,7 +29,7 @@ public class Enemy : MonoBehaviour {
     }
 
     public virtual void OnDestroy() {
-        //enemySpawner.RemoveEnemy(gameObject);
+        enemySpawner.RemoveEnemy(gameObject);
     }
 }
 

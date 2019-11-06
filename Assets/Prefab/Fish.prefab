@@ -1208,6 +1208,7 @@ GameObject:
   - component: {fileID: 4806013102498958301}
   - component: {fileID: 4806013102506386549}
   - component: {fileID: 114200613749845840}
+  - component: {fileID: 65990265961907290}
   m_Layer: 0
   m_Name: Fish
   m_TagString: Untagged
@@ -1265,3 +1266,17 @@ MonoBehaviour:
   limit: 22
   speed: 4
   spawnedPositionY: 0
+  enemySpawner: {fileID: 0}
+--- !u!65 &65990265961907290
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4806013102499125245}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.17062913, y: 0.11235686, z: 0.5907614}
+  m_Center: {x: 0.013970375, y: 0.07809081, z: -0.04982517}
