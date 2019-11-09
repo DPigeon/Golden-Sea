@@ -19,9 +19,15 @@ public class PlayerController : MonoBehaviour
     float deadTimer;
     float deadDuration = 3.0F;
 
-    CharacterController playerController;
-    Boat boat;
-    LifeGenerator lifeGenerator;
+    float nextForce = 0.0F;
+    float swimmingDuration = 0.2F;
+    bool stopForce;
+    bool swimming;
+
+    CharacterController playerController = null;
+    Rigidbody rigidbody = null;
+    Boat boat = null;
+    LifeGenerator lifeGenerator = null;
 
     // Buoyancy variables
     float gravity = 0.0F;
@@ -34,6 +40,7 @@ public class PlayerController : MonoBehaviour
         playerController = GetComponent<CharacterController>();
         boat = GameObject.Find("Boat").GetComponent<Boat>();
         lifeGenerator = GameObject.Find("LifeHandler").GetComponent<LifeGenerator>();
+        rigidbody = GetComponent<Rigidbody>();
     }
 
     void Update()
@@ -47,25 +54,41 @@ public class PlayerController : MonoBehaviour
     {
         gravity -= IsInWater(inWater) * Time.deltaTime;
 
-        float horizontal = Input.GetAxis(horizontalInput) * movementSpeed;
+        /*float horizontal = Input.GetAxis(horizontalInput) * movementSpeed;
         float vertical = Input.GetAxis(verticalInput) * movementSpeed;
         Vector3 right = transform.right * horizontal;
-        Vector3 forward = transform.forward * vertical;
+        Vector3 forward = transform.forward * vertical;*/
 
-        Vector3 movement = new Vector3(forward.x + right.x, gravity, forward.z + right.z);
-        playerController.Move(movement); // Moves our component
+        Vector3 gravityMovement = new Vector3(0.0F, gravity, 0.0F);
+        playerController.Move(gravityMovement); // Moves our component
 
-        if (Input.GetButton("Swim"))
-        {
-            transform.position += cameraView.transform.forward * Time.deltaTime * 10.0F;
+        if (Input.GetButtonDown("Swim") && inWater && !swimming) {
+            Vector3 constantForce = cameraView.transform.forward * 2.0F;
+            playerController.Move(constantForce);
+            gravity = 0.0F;
+            swimming = true;
+            stopForce = false;
         }
+        if (Input.GetButtonUp("Swim") && inWater)
+        {
+            stopForce = true;
+        }
+        if (Input.GetKey(KeyCode.C) && inWater) {
+            Vector3 constantForce = new Vector3(0.0F, 200.0F / 5000F, 0.0F);
+            playerController.Move(constantForce);
+            gravity = 0.0F; // Reseting gravity
+        }
+
     }
 
-    public float IsInWater(bool inTheWater) {
-        if (inTheWater) {
+    public float IsInWater(bool inTheWater)
+    {
+        if (inTheWater)
+        {
             return gravityInWater;
         }
-        else {
+        else
+        {
             return gravityOutsideWater;
         }
     }
@@ -95,6 +118,16 @@ public class PlayerController : MonoBehaviour
                 dead = false;
                 deadTimer = 0.0f;
                 //FindObjectOfType<GameOver>().EndTheGame();
+            }
+        }
+
+        if (stopForce)
+        {
+            nextForce += Time.deltaTime;
+            if (nextForce > swimmingDuration)
+            {
+                swimming = false;
+                nextForce = 0.0F;
             }
         }
     }
