@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour {
+public class PlayerController : MonoBehaviour
+{
     [SerializeField]
     string horizontalInput = "";
     [SerializeField]
     string verticalInput = "";
     [SerializeField]
-    float movementSpeed = 2.0F;
+    float movementSpeed = 0.0F;
     [SerializeField]
     Camera cameraView = null;
 
@@ -22,31 +23,55 @@ public class PlayerController : MonoBehaviour {
     Boat boat;
     LifeGenerator lifeGenerator;
 
-    void Start() {
+    // Buoyancy variables
+    float gravity = 0.0F;
+    float gravityInWater = 2.0F / 1000F;
+    float gravityOutsideWater = 9.81F / 100F;
+    public bool inWater;
+
+    void Start()
+    {
         playerController = GetComponent<CharacterController>();
         boat = GameObject.Find("Boat").GetComponent<Boat>();
         lifeGenerator = GameObject.Find("LifeHandler").GetComponent<LifeGenerator>();
     }
 
-    void Update() {
+    void Update()
+    {
         PlayerMovement();
         CheckBoundaries();
         HandleTimers();
     }
 
-    private void PlayerMovement() {
+    private void PlayerMovement()
+    {
+        gravity -= IsInWater(inWater) * Time.deltaTime;
+
         float horizontal = Input.GetAxis(horizontalInput) * movementSpeed;
         float vertical = Input.GetAxis(verticalInput) * movementSpeed;
         Vector3 right = transform.right * horizontal;
         Vector3 forward = transform.forward * vertical;
-        playerController.SimpleMove(forward + right); // Moves our component
 
-        if (Input.GetButton("Swim")) {
+        Vector3 movement = new Vector3(forward.x + right.x, gravity, forward.z + right.z);
+        playerController.Move(movement); // Moves our component
+
+        if (Input.GetButton("Swim"))
+        {
             transform.position += cameraView.transform.forward * Time.deltaTime * 10.0F;
         }
     }
 
-    private void CheckBoundaries() {
+    public float IsInWater(bool inTheWater) {
+        if (inTheWater) {
+            return gravityInWater;
+        }
+        else {
+            return gravityOutsideWater;
+        }
+    }
+
+    private void CheckBoundaries()
+    {
         // | Side1 - Side2 | in Z
         float limit = 22.0F;
         if (transform.position.z < -limit)
@@ -60,10 +85,13 @@ public class PlayerController : MonoBehaviour {
             transform.position = new Vector3(-limit, transform.position.y, transform.position.z);
     }
 
-    private void HandleTimers() {
-        if (dead) {
+    private void HandleTimers()
+    {
+        if (dead)
+        {
             deadTimer += Time.deltaTime;
-            if (deadTimer > deadDuration) {
+            if (deadTimer > deadDuration)
+            {
                 dead = false;
                 deadTimer = 0.0f;
                 //FindObjectOfType<GameOver>().EndTheGame();
@@ -71,15 +99,20 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
-    void OnTriggerEnter(Collider collider) {
-        if (collider.gameObject.name == "Fish(Clone)" || collider.gameObject.name == "Whale(Clone)") {
-            if (lifeGenerator.lives.Count == 2) {
+    void OnTriggerEnter(Collider collider)
+    {
+        if (collider.gameObject.name == "Fish(Clone)" || collider.gameObject.name == "Whale(Clone)")
+        {
+            if (lifeGenerator.lives.Count == 2)
+            {
                 lifeGenerator.RemoveLife();
                 isHurt = true;
                 //hurtSound.Play();
             }
-            else if (lifeGenerator.lives.Count == 1) {
-                if (boat.items.Count != 0) {
+            else if (lifeGenerator.lives.Count == 1)
+            {
+                if (boat.items.Count != 0)
+                {
                     Destroy(boat.items[boat.items.Count - 1]); // If any item in player inventory, destroy
                     boat.items.Clear();
                     boat.itemsCollected.Clear();
@@ -91,22 +124,26 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
-    private void Die() {
+    private void Die()
+    {
         //dieSound.Play();
         dead = true;
         transform.localScale = new Vector3(0, 0, 0); // Hide player (deleted and dead)
         //bubbles.Stop();
     }
 
-    public void IncreaseSpeed(float number) {
+    public void IncreaseSpeed(float number)
+    {
         movementSpeed = movementSpeed + number;
     }
 
-    public void DecreaseSpeed(float number) {
+    public void DecreaseSpeed(float number)
+    {
         movementSpeed = movementSpeed - number;
     }
 
-    public void ResetSpeed() {
+    public void ResetSpeed()
+    {
         movementSpeed = 5.0F;
     }
 

@@ -6,6 +6,7 @@ public class Underwater : MonoBehaviour {
     [SerializeField]
     float waterLevel = 0.0F;
 
+    PlayerController player = null;
     bool isUnderwater;
     Color normalColor;
     Color underwaterColor;
@@ -13,6 +14,7 @@ public class Underwater : MonoBehaviour {
     void Start() {
         normalColor = new Color(0.5F, 0.5F, 0.5F, 0.5F);
         underwaterColor = new Color(0.22F, 0.65F, 0.77F, 0.5F);
+        player = GetComponent<PlayerController>();
     }
 
     void Update() {
@@ -34,10 +36,12 @@ public class Underwater : MonoBehaviour {
     private void SetUnderwaterColor() {
         RenderSettings.fogColor = underwaterColor;
         RenderSettings.fogDensity = 0.030F; // Will have to change
+        player.inWater = true;
     }
 
     private void SetNormalColor() {
         RenderSettings.fogColor = normalColor;
         RenderSettings.fogDensity = 0.0005F;
+        player.inWater = false;
     }
 }
