@@ -9,8 +9,8 @@ public class OxygenBar : MonoBehaviour {
     int index;
     int barSize = 7;
 
-    float nextTimer = 0.0F;
-    float timer = 1.5F;
+    float nextTimer = 5.0F;
+    float timerRate = 5.0F;
 
     RawImage[] oxygenBar; // Array of portions of the sword bar
 
@@ -25,19 +25,24 @@ public class OxygenBar : MonoBehaviour {
     }
 
     public void Underwater() {
-        if (FindObjectOfType<Underwater>().isUnderwater)
-            DecreaseOxygen(1);
-        //else
-            //IncreaseOxygen(1);
+        if (FindObjectOfType<Underwater>().isUnderwater) {
+            if (Time.time > nextTimer) {
+                nextTimer = Time.time + timerRate;
+                DecreaseOxygen(1);
+            }
+        }
+        else if (!FindObjectOfType<Underwater>().isUnderwater)
+            RefillOxygen(8);
     }
 
-    public void IncreaseOxygen(int indexPosition) {
+    public void RefillOxygen(int indexPosition) {
         for (int i = 0; i < indexPosition; i++) {
             if (index < maxOxygen) {
-                oxygenBar[index].enabled = true;
+                oxygenBar[barSize - index].enabled = true;
                 index++;
             }
         }
+        index = oxygenBar.Length - 1;
     }
 
     public void DecreaseOxygen(int indexPosition) {
@@ -48,5 +53,4 @@ public class OxygenBar : MonoBehaviour {
             }
         }
     }
-
 }

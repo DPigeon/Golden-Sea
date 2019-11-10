@@ -6229,7 +6229,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f07a4fe2b522c943a6b154eea2e9829, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waterLevel: 25
+  waterLevel: 22.5
   isUnderwater: 0
 --- !u!65 &1274131091
 BoxCollider:
