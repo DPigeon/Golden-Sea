@@ -7,7 +7,7 @@ public class Underwater : MonoBehaviour {
     float waterLevel = 0.0F;
 
     PlayerController player = null;
-    bool isUnderwater;
+    public bool isUnderwater;
     Color normalColor;
     Color underwaterColor;
 
