@@ -7107,6 +7107,10 @@ MonoBehaviour:
     type: 3}
   GoldenLotPrefab: {fileID: 6236314314531388389, guid: f4f2475d4ae14324f994a79c0ffdc71d,
     type: 3}
+  DirtyOxygenTankPrefab: {fileID: 4851037850394337904, guid: e107fcb727dd1634a9cff45917cf3ff3,
+    type: 3}
+  OxygenTankPrefab: {fileID: 4851037850394337904, guid: 8bed9442fffd58e4d86062b02cb5304f,
+    type: 3}
   variantSpecial: 0
   enemies: []
 --- !u!4 &1816744544

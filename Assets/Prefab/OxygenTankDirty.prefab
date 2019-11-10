@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4851037850394508880}
   - component: {fileID: 4851037850391117424}
-  - component: {fileID: 114093870843554010}
+  - component: {fileID: 114987520970524616}
   - component: {fileID: 4851037850392083632}
   m_Layer: 0
-  m_Name: OxygenTank
+  m_Name: OxygenTankDirty
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -41,7 +41,7 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4851037850394337904}
   m_Mesh: {fileID: 4300000, guid: 95576205994001d48a144daaa82d330a, type: 3}
---- !u!114 &114093870843554010
+--- !u!114 &114987520970524616
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -70,7 +70,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 84410f72f56e63f4ea3db3a345708169, type: 2}
+  - {fileID: 2100000, guid: 57fba324dfc1dcb4cab2d8d3a26b8bc5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
