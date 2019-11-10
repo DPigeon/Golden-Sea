@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
-{
+public class PlayerController : MonoBehaviour {
     [SerializeField]
     string horizontalInput = "";
     [SerializeField]
@@ -35,29 +34,31 @@ public class PlayerController : MonoBehaviour
     float gravityOutsideWater = 9.81F / 100F;
     public bool inWater;
 
-    void Start()
-    {
+    void Start() {
         playerController = GetComponent<CharacterController>();
         boat = GameObject.Find("Boat").GetComponent<Boat>();
         lifeGenerator = GameObject.Find("LifeHandler").GetComponent<LifeGenerator>();
         rigidbody = GetComponent<Rigidbody>();
     }
 
-    void Update()
-    {
+    void Update() {
         PlayerMovement();
         CheckBoundaries();
         HandleTimers();
     }
 
-    private void PlayerMovement()
-    {
+    private void PlayerMovement() {
         gravity -= IsInWater(inWater) * Time.deltaTime;
 
-        /*float horizontal = Input.GetAxis(horizontalInput) * movementSpeed;
-        float vertical = Input.GetAxis(verticalInput) * movementSpeed;
-        Vector3 right = transform.right * horizontal;
-        Vector3 forward = transform.forward * vertical;*/
+        // When character is grounded, move normally
+        if (playerController.isGrounded) {
+            float horizontal = Input.GetAxis(horizontalInput) * movementSpeed;
+            float vertical = Input.GetAxis(verticalInput) * movementSpeed;
+            Vector3 right = transform.right * horizontal;
+            Vector3 forward = transform.forward * vertical;
+            // Add fluid movement in water later here
+            playerController.Move(right + forward);
+        }
 
         Vector3 gravityMovement = new Vector3(0.0F, gravity, 0.0F);
         playerController.Move(gravityMovement); // Moves our component
@@ -69,8 +70,7 @@ public class PlayerController : MonoBehaviour
             swimming = true;
             stopForce = false;
         }
-        if (Input.GetButtonUp("Swim") && inWater)
-        {
+        if (Input.GetButtonUp("Swim") && inWater) {
             stopForce = true;
         }
         if (Input.GetKey(KeyCode.C) && inWater) {
@@ -81,20 +81,16 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    public float IsInWater(bool inTheWater)
-    {
-        if (inTheWater)
-        {
+    public float IsInWater(bool inTheWater) {
+        if (inTheWater) {
             return gravityInWater;
         }
-        else
-        {
+        else {
             return gravityOutsideWater;
         }
     }
 
-    private void CheckBoundaries()
-    {
+    private void CheckBoundaries() {
         // | Side1 - Side2 | in Z
         float limit = 22.0F;
         if (transform.position.z < -limit)
@@ -108,44 +104,34 @@ public class PlayerController : MonoBehaviour
             transform.position = new Vector3(-limit, transform.position.y, transform.position.z);
     }
 
-    private void HandleTimers()
-    {
-        if (dead)
-        {
+    private void HandleTimers() {
+        if (dead) {
             deadTimer += Time.deltaTime;
-            if (deadTimer > deadDuration)
-            {
+            if (deadTimer > deadDuration) {
                 dead = false;
                 deadTimer = 0.0f;
                 //FindObjectOfType<GameOver>().EndTheGame();
             }
         }
 
-        if (stopForce)
-        {
+        if (stopForce) {
             nextForce += Time.deltaTime;
-            if (nextForce > swimmingDuration)
-            {
+            if (nextForce > swimmingDuration) {
                 swimming = false;
                 nextForce = 0.0F;
             }
         }
     }
 
-    void OnTriggerEnter(Collider collider)
-    {
-        if (collider.gameObject.name == "Fish(Clone)" || collider.gameObject.name == "Whale(Clone)")
-        {
-            if (lifeGenerator.lives.Count == 2)
-            {
+    void OnTriggerEnter(Collider collider) {
+        if (collider.gameObject.name == "Fish(Clone)" || collider.gameObject.name == "Whale(Clone)") {
+            if (lifeGenerator.lives.Count == 2) {
                 lifeGenerator.RemoveLife();
                 isHurt = true;
                 //hurtSound.Play();
             }
-            else if (lifeGenerator.lives.Count == 1)
-            {
-                if (boat.items.Count != 0)
-                {
+            else if (lifeGenerator.lives.Count == 1) {
+                if (boat.items.Count != 0) {
                     Destroy(boat.items[boat.items.Count - 1]); // If any item in player inventory, destroy
                     boat.items.Clear();
                     boat.itemsCollected.Clear();
@@ -157,26 +143,22 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void Die()
-    {
+    private void Die() {
         //dieSound.Play();
         dead = true;
         transform.localScale = new Vector3(0, 0, 0); // Hide player (deleted and dead)
         //bubbles.Stop();
     }
 
-    public void IncreaseSpeed(float number)
-    {
+    public void IncreaseSpeed(float number) {
         movementSpeed = movementSpeed + number;
     }
 
-    public void DecreaseSpeed(float number)
-    {
+    public void DecreaseSpeed(float number) {
         movementSpeed = movementSpeed - number;
     }
 
-    public void ResetSpeed()
-    {
+    public void ResetSpeed() {
         movementSpeed = 5.0F;
     }
 

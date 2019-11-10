@@ -35,6 +35,15 @@ public class OxygenBar : MonoBehaviour {
             RefillOxygen(8);
     }
 
+    public void IncreaseOxygen(int indexPosition) {
+        for (int i = 0; i < indexPosition; i++) {
+            if (index < maxOxygen) {
+                oxygenBar[index].enabled = true;
+                index++;
+            }
+        }
+    }
+
     public void RefillOxygen(int indexPosition) {
         for (int i = 0; i < indexPosition; i++) {
             if (index < maxOxygen) {

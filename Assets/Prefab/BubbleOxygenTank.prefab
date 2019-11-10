@@ -12,8 +12,9 @@ GameObject:
   - component: {fileID: 4851037850391117424}
   - component: {fileID: 114987520970524616}
   - component: {fileID: 4851037850392083632}
+  - component: {fileID: 65095667035398064}
   m_Layer: 0
-  m_Name: OxygenTankDirty
+  m_Name: BubbleOxygenTank
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -90,3 +91,16 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &65095667035398064
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4851037850394337904}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.29856217, y: 1.2256522, z: 0.29856217}
+  m_Center: {x: 0, y: 0.2742566, z: -0.000000022351742}
