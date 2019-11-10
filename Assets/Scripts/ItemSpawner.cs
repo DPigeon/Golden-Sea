@@ -12,7 +12,7 @@ public class ItemSpawner : MonoBehaviour {
     /*[SerializeField]
     GameObject NitroTankPrefab = null;*/
     [SerializeField]
-    GameObject DirtyOxygenTankPrefab = null;
+    GameObject BubbleOxygenTankPrefab = null;
     [SerializeField]
     GameObject OxygenTankPrefab = null;
 
@@ -39,8 +39,8 @@ public class ItemSpawner : MonoBehaviour {
     float aliveMediumBarTime = 7.7f;
     float aliveBagTime = 4.5f;
     float aliveNitroTankTime = 4.0f;
-    float aliveDirtyOxygenTank = 10.0F;
-    float aliveOxygenTank = 5.0F;
+    float aliveBubbleOxygenTank = 12.0F;
+    float aliveOxygenTank = 16.0F;
     public List<GameObject> enemies = new List<GameObject>(); // Enemies stored here
 
     void Start() {
@@ -108,12 +108,12 @@ public class ItemSpawner : MonoBehaviour {
             float randomItem = Random.Range(-1, 2);
 
             if (randomItem == 0) { // Dirty tank
-                GameObject dirtyOxygenTank = Instantiate(DirtyOxygenTankPrefab, spawnedPosition, Quaternion.identity) as GameObject;
-                Destroy(dirtyOxygenTank, aliveSmallBarTime);
+                GameObject bubbleOxygenTank = Instantiate(BubbleOxygenTankPrefab, spawnedPosition, Quaternion.identity) as GameObject;
+                Destroy(bubbleOxygenTank, aliveBubbleOxygenTank);
             }
             else if (randomItem == 1) { // Dirty tank
                 GameObject oxygenTank = Instantiate(OxygenTankPrefab, spawnedPosition, Quaternion.identity) as GameObject;
-                Destroy(oxygenTank, aliveMediumBarTime);
+                Destroy(oxygenTank, aliveOxygenTank);
             }
         }
     }
