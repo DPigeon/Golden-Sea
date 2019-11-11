@@ -26,7 +26,7 @@ public class Whale : Enemy {
     }
 
     private void HandleProjectiles() {
-        if (Time.time > nextProjectileSpawn) {
+        if (Time.time > nextProjectileSpawn)  {
             nextProjectileSpawn = Time.time + projectileFrequency;
             ShootProjectile();
         }
@@ -34,7 +34,6 @@ public class Whale : Enemy {
 
     private void ShootProjectile() {
         GameObject projectileObject = Instantiate(PrefabProjectile, transform.position, Quaternion.identity) as GameObject;
-        Projectile projectile = projectileObject.GetComponent<Projectile>();
         //projectileSound.Play();
         Destroy(projectileObject, projectileDuration);
     }
@@ -43,7 +42,8 @@ public class Whale : Enemy {
         return speed;
     }
 
-    public override void SetSpeed(float number) {
+    public override void SetSpeed(float number)
+    {
         base.SetSpeed(number);
     }
 

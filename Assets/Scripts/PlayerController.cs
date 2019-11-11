@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour {
     float movementSpeed = 0.0F;
     [SerializeField]
     Camera cameraView = null;
+    [SerializeField]
+    GameObject ShinyFigurinePrefab = null;
 
     bool isHurt;
 
@@ -22,6 +24,8 @@ public class PlayerController : MonoBehaviour {
     float swimmingDuration = 0.2F;
     bool stopForce;
     bool swimming;
+
+    float projectileDuration = 5.0F;
 
     CharacterController playerController = null;
     Rigidbody rigidbody = null;
@@ -85,6 +89,9 @@ public class PlayerController : MonoBehaviour {
         if (Input.GetButton("Throw")) {
             // Create new projectile
             // Aim them towards the lookAt vector of the pc
+            GameObject shinyFigurine = Instantiate(ShinyFigurinePrefab, transform.position, Quaternion.identity) as GameObject;
+            //projectileSound.Play();
+            Destroy(shinyFigurine, projectileDuration);
         }
     }
 

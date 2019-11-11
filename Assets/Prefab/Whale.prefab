@@ -665,11 +665,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 8857845895795087086}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 962c7046d03b2304c927aafb2d9129a3, type: 3}
+  m_Script: {fileID: 11500000, guid: eb78343d9a2e7d74ab94a0fd6ee3891e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  limit: 18
-  speed: 4
+  limit: 18.5
+  speed: 5
   spawnedPositionY: 0
   enemySpawner: {fileID: 0}
   PrefabProjectile: {fileID: 2584521086634950945, guid: 8361e76582fcc7647bea02258ab654db,

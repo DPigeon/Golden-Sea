@@ -3,12 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ShinyFigurine : Projectile {
+    [SerializeField]
+    Camera cameraView = null;
+
     public override void Awake() {
         base.Awake();
+        cameraView = GameObject.Find("PlayerCamera").GetComponent<Camera>();
     }
 
     public override void Update() {
-        base.Update();
+        transform.position += cameraView.transform.forward * speed * Time.deltaTime;
     }
 
     public override float GetSpeed() {
@@ -16,10 +20,9 @@ public class ShinyFigurine : Projectile {
     }
 
     void OnTriggerEnter(Collider col) {
-        LifeGenerator playerLife = GameObject.Find("LifeHandler").GetComponent<LifeGenerator>();
-        if (col.gameObject.name == "Player") {
-            playerLife.RemoveLife();
-            Destroy(gameObject);
+        if (col.gameObject.name == "Fish(Clone)") {
+            // Distract them
+            Debug.Log("hi");
         }
     }
 
