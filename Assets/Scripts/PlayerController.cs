@@ -43,6 +43,7 @@ public class PlayerController : MonoBehaviour {
 
     void Update() {
         PlayerMovement();
+        ThrowFigurine();
         CheckBoundaries();
         HandleTimers();
     }
@@ -78,7 +79,13 @@ public class PlayerController : MonoBehaviour {
             playerController.Move(constantForce);
             gravity = 0.0F; // Reseting gravity
         }
+    }
 
+    private void ThrowFigurine() {
+        if (Input.GetButton("Throw")) {
+            // Create new projectile
+            // Aim them towards the lookAt vector of the pc
+        }
     }
 
     public float IsInWater(bool inTheWater) {
