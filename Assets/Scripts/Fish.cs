@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Fish : Enemy {
+    bool distracted;
+    float distractTimer = 0.0F;
+    float distractDuration = 3.0F;
+
     public override void Start() {
         base.Start();
         limit = 22.0F;
@@ -14,6 +18,16 @@ public class Fish : Enemy {
         base.Update();
         transform.Translate(Vector3.forward * speed * Time.deltaTime);
         CheckBoundaries();
+
+        /* Distract enemy logic */ 
+        if (distracted) {
+            distractTimer += Time.deltaTime;
+            if (distractTimer > distractDuration) {
+                SetSpeed(4.0F);
+                distractTimer = 0.0F;
+                distracted = false;
+            }
+        }
     }
 
     public override float GetSpeed() {
@@ -26,6 +40,11 @@ public class Fish : Enemy {
 
     public override void IncrementSpeed(float speed) {
         base.IncrementSpeed(speed);
+    }
+
+    public void Distract() {
+        SetSpeed(0.0F);
+        distracted = true;
     }
 
     public override void OnDestroy() {

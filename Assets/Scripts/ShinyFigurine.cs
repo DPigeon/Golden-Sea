@@ -9,10 +9,11 @@ public class ShinyFigurine : Projectile {
     public override void Awake() {
         base.Awake();
         cameraView = GameObject.Find("PlayerCamera").GetComponent<Camera>();
+        transform.rotation = Quaternion.LookRotation(cameraView.transform.forward);
     }
 
     public override void Update() {
-        transform.position += cameraView.transform.forward * speed * Time.deltaTime;
+        base.Update();
     }
 
     public override float GetSpeed() {
@@ -21,8 +22,13 @@ public class ShinyFigurine : Projectile {
 
     void OnTriggerEnter(Collider col) {
         if (col.gameObject.name == "Fish(Clone)") {
-            // Distract them
-            Debug.Log("hi");
+            // Distract them by putting their speed to 0 for 3 seconds
+            Fish fish = col.gameObject.GetComponent<Fish>();
+            fish.Distract();
+        }
+        if (col.gameObject.name == "Whale(Clone)") {
+            // No distraction
+            Destroy(gameObject);
         }
     }
 

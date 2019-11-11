@@ -6183,6 +6183,8 @@ MonoBehaviour:
   verticalInput: VerticalY
   movementSpeed: 0.1
   cameraView: {fileID: 534669904}
+  ShinyFigurinePrefab: {fileID: 2636275227416602688, guid: 2efb14ca086629a44938d086cef1b166,
+    type: 3}
   inWater: 0
 --- !u!143 &1274131088
 CharacterController:

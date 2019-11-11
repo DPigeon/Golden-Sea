@@ -25,7 +25,10 @@ public class PlayerController : MonoBehaviour {
     bool stopForce;
     bool swimming;
 
+    bool throwing;
+    float throwingTimer;
     float projectileDuration = 5.0F;
+    float throwingDuration = 1.0F;
 
     CharacterController playerController = null;
     Rigidbody rigidbody = null;
@@ -53,7 +56,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     private void PlayerMovement() {
-        gravity -= IsInWater(inWater) * Time.deltaTime;
+        gravity += IsInWater(inWater) * Time.deltaTime;
 
         // When character is grounded, move normally
         if (playerController.isGrounded) {
@@ -78,17 +81,17 @@ public class PlayerController : MonoBehaviour {
         if (Input.GetButtonUp("Swim") && inWater) {
             stopForce = true;
         }
-        if (Input.GetKey(KeyCode.C) && inWater) {
+        /*if (Input.GetKey(KeyCode.C) && inWater) {
             Vector3 constantForce = new Vector3(0.0F, 200.0F / 5000F, 0.0F);
             playerController.Move(constantForce);
             gravity = 0.0F; // Reseting gravity
-        }
+        }*/
     }
 
     private void ThrowFigurine() {
-        if (Input.GetButton("Throw")) {
-            // Create new projectile
-            // Aim them towards the lookAt vector of the pc
+        if (Input.GetButtonDown("Throw") && !throwing) {
+            throwing = true;
+            gravity = 0.0F;
             GameObject shinyFigurine = Instantiate(ShinyFigurinePrefab, transform.position, Quaternion.identity) as GameObject;
             //projectileSound.Play();
             Destroy(shinyFigurine, projectileDuration);
@@ -133,6 +136,14 @@ public class PlayerController : MonoBehaviour {
             if (nextForce > swimmingDuration) {
                 swimming = false;
                 nextForce = 0.0F;
+            }
+        }
+
+        if (throwing) {
+            throwingTimer += Time.deltaTime;
+            if (throwingTimer > throwingDuration) {
+                throwing = false;
+                throwingTimer = 0.0F;
             }
         }
     }
