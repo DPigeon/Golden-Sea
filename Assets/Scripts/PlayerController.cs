@@ -56,10 +56,13 @@ public class PlayerController : MonoBehaviour {
     }
 
     private void PlayerMovement() {
-        gravity += IsInWater(inWater) * Time.deltaTime;
+        if (inWater)
+            gravity += IsInWater(inWater) * Time.deltaTime;
+        if (!inWater)
+            gravity = 0.0F;
 
         // When character is grounded, move normally
-        if (playerController.isGrounded) {
+        if (playerController.isGrounded || !inWater) {
             float horizontal = Input.GetAxis(horizontalInput) * movementSpeed;
             float vertical = Input.GetAxis(verticalInput) * movementSpeed;
             Vector3 right = transform.right * horizontal;
@@ -71,7 +74,7 @@ public class PlayerController : MonoBehaviour {
         Vector3 gravityMovement = new Vector3(0.0F, gravity, 0.0F);
         playerController.Move(gravityMovement); // Moves our component
 
-        if (Input.GetButtonDown("Swim") && inWater && !swimming) {
+        if (Input.GetButtonDown("Swim") && !swimming && inWater ) {
             Vector3 constantForce = cameraView.transform.forward * 2.0F;
             playerController.Move(constantForce);
             gravity = 0.0F;

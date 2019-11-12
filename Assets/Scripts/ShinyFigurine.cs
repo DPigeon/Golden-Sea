@@ -25,6 +25,7 @@ public class ShinyFigurine : Projectile {
             // Distract them by putting their speed to 0 for 3 seconds
             Fish fish = col.gameObject.GetComponent<Fish>();
             fish.Distract();
+            Destroy(gameObject);
         }
         if (col.gameObject.name == "Whale(Clone)") {
             // No distraction
