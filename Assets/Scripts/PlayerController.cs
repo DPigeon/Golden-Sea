@@ -49,13 +49,13 @@ public class PlayerController : MonoBehaviour {
     }
 
     void Update() {
-        PlayerMovement();
+        PlayerControls();
         ThrowFigurine();
         CheckBoundaries();
         HandleTimers();
     }
 
-    private void PlayerMovement() {
+    private void PlayerControls() {
         if (inWater && gravity < 0.01F)
             gravity += IsInWater(inWater) * Time.deltaTime;
         if (!inWater)
@@ -74,7 +74,7 @@ public class PlayerController : MonoBehaviour {
         Vector3 gravityMovement = new Vector3(0.0F, gravity, 0.0F);
         playerController.Move(gravityMovement); // Moves our component
 
-        if (Input.GetButtonDown("Swim") && !swimming && inWater ) {
+        if (Input.GetButtonDown("Swim") && !swimming && inWater) {
             Vector3 constantForce = cameraView.transform.forward * 2.0F;
             playerController.Move(constantForce);
             gravity = 0.0F;
@@ -89,6 +89,9 @@ public class PlayerController : MonoBehaviour {
             playerController.Move(constantForce);
             gravity = 0.0F; // Reseting gravity
         }*/
+        if (Input.GetButton("Pause")) {
+            FindObjectOfType<GameInterfaces>().PauseTheGame();
+        }
     }
 
     private void ThrowFigurine() {

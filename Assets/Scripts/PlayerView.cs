@@ -16,7 +16,6 @@ public class PlayerView : MonoBehaviour {
 
     void Start() {
         xAxisMax = 0.0F;
-        Cursor.lockState = CursorLockMode.Locked; // Removes the mouse cursor
     }
 
     void Update() {
