@@ -58,7 +58,7 @@ public class PlayerController : MonoBehaviour {
     private void PlayerControls() {
         if (inWater && gravity < 0.01F)
             gravity += IsInWater(inWater) * Time.deltaTime;
-        if (!inWater)
+        if (!inWater || FindObjectOfType<GameInterfaces>().isPaused || FindObjectOfType<GameInterfaces>().gameEnded)
             gravity = 0.0F;
         
         // When character is grounded, move normally

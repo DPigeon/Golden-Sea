@@ -15,15 +15,19 @@ public class GameInterfaces : MonoBehaviour {
     //AudioSource gameOverSound;
 
     void Start() {
-        // Cursor handling
-        /*if (!isPaused || !gameEnded)
-            Cursor.lockState = CursorLockMode.Locked; // Removes the mouse cursor
-        else {
-            Screen.lockCursor = false;
-            Cursor.lockState = CursorLockMode.None;
-        }*/
+        //CursorHandling();
         //AudioSource[] audioSources = GetComponents<AudioSource>();
         //gameOverSound = audioSources[0];
+    }
+
+    void CursorHandling() {
+        // Cursor handling
+        if (!isPaused || !gameEnded)
+            Cursor.lockState = CursorLockMode.Locked; // Removes the mouse cursor
+        else if (isPaused) {
+            Screen.lockCursor = false;
+            Cursor.lockState = CursorLockMode.None;
+        }
     }
 
     public void PauseTheGame() {
