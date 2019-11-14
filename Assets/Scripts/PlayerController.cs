@@ -133,7 +133,7 @@ public class PlayerController : MonoBehaviour {
             if (deadTimer > deadDuration) {
                 dead = false;
                 deadTimer = 0.0f;
-                //FindObjectOfType<GameOver>().EndTheGame();
+                //FindObjectOfType<GameInterfaces>().EndTheGame();
             }
         }
 
