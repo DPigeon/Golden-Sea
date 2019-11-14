@@ -56,11 +56,11 @@ public class PlayerController : MonoBehaviour {
     }
 
     private void PlayerMovement() {
-        if (inWater)
+        if (inWater && gravity < 0.01F)
             gravity += IsInWater(inWater) * Time.deltaTime;
         if (!inWater)
             gravity = 0.0F;
-
+        
         // When character is grounded, move normally
         if (playerController.isGrounded || !inWater) {
             float horizontal = Input.GetAxis(horizontalInput) * movementSpeed;
