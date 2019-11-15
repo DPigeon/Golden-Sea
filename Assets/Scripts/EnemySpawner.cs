@@ -12,10 +12,10 @@ public class EnemySpawner : MonoBehaviour {
     GameObject currentWhale;
 
     ItemSpawner itemSpawner;
-    //LevelManager levelManager;
+    LevelManager levelManager;
 
-    float fishLimit = 28.0F; // in Z
-    float whaleLimit = 30.0F; // in Z
+    float fishLimit = 22.0F; // in Z
+    float whaleLimit = 23.0F; // in Z
     float planeLimit = 23.0F; // in XY plane
 
     float offsetXLeft = 0.0F;
@@ -38,15 +38,15 @@ public class EnemySpawner : MonoBehaviour {
         currentWhale = null;
 
         itemSpawner = GameObject.Find("ItemSpawner").GetComponent<ItemSpawner>();
-        //levelManager = GameObject.Find("LevelManager").GetComponent<LevelManager>();
+        levelManager = GameObject.Find("LevelManager").GetComponent<LevelManager>();
 
-        currentSpeedGameLevelFish = 1.8F; // initial speed for Fishs
-        currentSpeedGameLevelWhale = 2.3F; // initial speed for Whale
+        currentSpeedGameLevelFish = 4.0F; // initial speed for Fishs
+        currentSpeedGameLevelWhale = 10.0F; // initial speed for Whale
     }
 
     void Update() {
-        //currentSpeedGameLevelFish = 1.8F + (float)levelManager.GetLevel() * levelManager.GetSpeedLevelRate();
-        //currentSpeedGameLevelWhale = 2.3F + (float)levelManager.GetLevel() * levelManager.GetSpeedLevelRate();
+        currentSpeedGameLevelFish = 4.0F + (float)levelManager.GetLevel() * levelManager.GetSpeedLevelRate();
+        currentSpeedGameLevelWhale = 10.0F + (float)levelManager.GetLevel() * levelManager.GetSpeedLevelRate();
         whaleAliveTime = Random.Range(7, 11);
         spawnWhaleInterval = Random.Range(12, 20);
         HandleFishEnemy();

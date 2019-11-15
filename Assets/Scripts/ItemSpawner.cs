@@ -33,7 +33,7 @@ public class ItemSpawner : MonoBehaviour {
     float nitroSpawnRate;
     float randomItem; // Either 0 (small bar), 1 (medium bar) or 2 (bag)
     float nextTankSpawn = 0.0F;
-    float spawnTankRate = 1.0F;
+    float spawnTankRate = 2.0F;
     float randomTank;
     float aliveSmallBarTime = 9.3F;
     float aliveMediumBarTime = 7.7f;

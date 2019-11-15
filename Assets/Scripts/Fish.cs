@@ -10,7 +10,7 @@ public class Fish : Enemy {
     public override void Start() {
         base.Start();
         limit = 22.0F;
-        //speed = enemySpawner.currentSpeedGameLevelShark;
+        speed = enemySpawner.currentSpeedGameLevelFish;
         spawnedPositionY = transform.position.y;
     }
 

@@ -22,7 +22,6 @@ public class OxygenBar : MonoBehaviour {
 
     void Update() {
         Underwater();
-        //Debug.Log(index);
     }
 
     public void Underwater() {
@@ -53,12 +52,15 @@ public class OxygenBar : MonoBehaviour {
             }
         }
         index = oxygenBar.Length - 1;
+        nextTimer = Time.timeSinceLevelLoad; // Reset timer for the bar
     }
 
     public void DecreaseOxygen(int indexPosition) {
         for (int i = 0; i < indexPosition; i++) {
             if (index >= 0) {
                 oxygenBar[barSize - index].enabled = false;
+                if (index == 0) // Dead game over
+                    FindObjectOfType<GameInterfaces>().EndTheGame();
                 if (index != 0)
                     index--;
             }

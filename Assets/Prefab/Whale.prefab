@@ -669,7 +669,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   limit: 18.5
-  speed: 5
+  speed: 10
   spawnedPositionY: 0
   enemySpawner: {fileID: 0}
   PrefabProjectile: {fileID: 2584521086634950945, guid: 8361e76582fcc7647bea02258ab654db,

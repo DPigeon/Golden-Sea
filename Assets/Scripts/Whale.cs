@@ -7,14 +7,13 @@ public class Whale : Enemy {
     GameObject PrefabProjectile = null;
 
     float projectileDuration = 10.0F;
-    float projectileSpeed = 2.0F;
     float nextProjectileSpawn = 0.0F;
     float projectileFrequency = 0.0F;
 
     public override void Start() {
         base.Start();
         limit = 18.0F;
-        //speed = enemySpawner.currentSpeedGameLevelOctopus;
+        speed = enemySpawner.currentSpeedGameLevelWhale;
     }
 
     public override void Update() {

@@ -107,6 +107,10 @@ public class PlayerController : MonoBehaviour {
             transform.position = new Vector3(limit, transform.position.y, transform.position.z);
         else if (transform.position.x > limit)
             transform.position = new Vector3(-limit, transform.position.y, transform.position.z);
+        else if (transform.position.y > 25.0F) { // When on top of water, don't go out
+            rigidbody.velocity = Vector3.zero;
+            // play some sound here for out of water
+        }
     }
 
     private void HandleTimers() {

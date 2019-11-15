@@ -7,7 +7,7 @@ public class PlayerView : MonoBehaviour {
     [SerializeField]
     private string mouseXInputName = "", mouseYInputName = "";
     [SerializeField]
-    private float mouseSensitivity = 0.0F, swimSpeed = 2.0F;
+    private float mouseSensitivity = 0.0F;
 
     [SerializeField]
     Transform player = null;

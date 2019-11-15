@@ -5,9 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class GameInterfaces : MonoBehaviour {
     [SerializeField]
-    GameObject pauseUI;
+    GameObject pauseUI = null;
     [SerializeField]
-    GameObject gameOverUI;
+    GameObject gameOverUI = null;
 
     public bool isPaused = false;
     public bool gameEnded = false;
@@ -25,7 +25,7 @@ public class GameInterfaces : MonoBehaviour {
         if (!isPaused || !gameEnded)
             Cursor.lockState = CursorLockMode.Locked; // Removes the mouse cursor
         else if (isPaused) {
-            Screen.lockCursor = false;
+            Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
         }
     }
