@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour {
     float dragVariable = 1.0F;
 
     bool isHurt;
+    bool isGrounded;
 
     bool dead;
     float deadTimer;
@@ -32,19 +33,13 @@ public class PlayerController : MonoBehaviour {
     float projectileDuration = 5.0F;
     float throwingDuration = 1.0F;
 
-    CharacterController playerController = null;
     Rigidbody rigidbody = null;
     Boat boat = null;
     LifeGenerator lifeGenerator = null;
 
-    // Buoyancy variables
-    float gravity = 0.0F;
-    float gravityInWater = 2.0F / 5000F;
-    float gravityOutsideWater = 9.81F / 100F;
     public bool inWater;
 
     void Start() {
-        playerController = GetComponent<CharacterController>();
         boat = GameObject.Find("Boat").GetComponent<Boat>();
         lifeGenerator = GameObject.Find("LifeHandler").GetComponent<LifeGenerator>();
         rigidbody = GetComponent<Rigidbody>();
@@ -60,34 +55,27 @@ public class PlayerController : MonoBehaviour {
     private void PlayerControls() {
         if (inWater)
             rigidbody.useGravity = false;
-        //gravity += IsInWater(inWater) * Time.deltaTime;
         else
             rigidbody.useGravity = true;
-        if (!inWater || FindObjectOfType<GameInterfaces>().isPaused || FindObjectOfType<GameInterfaces>().gameEnded)
-            gravity = 0.0F;
         
         // When character is grounded, move normally
-        /*if (playerController.isGrounded || !inWater) {
+        if (isGrounded) {
             float horizontal = Input.GetAxis(horizontalInput) * movementSpeed;
             float vertical = Input.GetAxis(verticalInput) * movementSpeed;
             Vector3 right = transform.right * horizontal;
             Vector3 forward = transform.forward * vertical;
-            // Add fluid movement in water later here
-            playerController.Move(right + forward);
-        }*/
-
-        Vector3 gravityMovement = new Vector3(0.0F, gravity, 0.0F);
-        //playerController.Move(gravityMovement); // Moves our component
+            Vector3 movement = new Vector3(horizontal, 0.0F, vertical);
+            rigidbody.AddForce(movement);
+        }
 
         if (Input.GetButtonDown("Swim") && !swimming) {
             Vector3 constantForce = cameraView.transform.forward * 2.0F;
             rigidbody.AddForce(constantForce * Time.deltaTime * movementSpeed, ForceMode.Impulse);
-
-            gravity = 0.0F;
             swimming = true;
             stopForce = false;
         }
 
+        // Drag
         rigidbody.drag = rigidbody.velocity.magnitude * dragVariable;
 
         if (Input.GetButtonUp("Swim")) {
@@ -101,19 +89,9 @@ public class PlayerController : MonoBehaviour {
     private void ThrowFigurine() {
         if (Input.GetButtonDown("Throw") && !throwing) {
             throwing = true;
-            gravity = 0.0F;
             GameObject shinyFigurine = Instantiate(ShinyFigurinePrefab, transform.position, Quaternion.identity) as GameObject;
             //projectileSound.Play();
             Destroy(shinyFigurine, projectileDuration);
-        }
-    }
-
-    public float IsInWater(bool inTheWater) {
-        if (inTheWater) {
-            return gravityInWater;
-        }
-        else {
-            return gravityOutsideWater;
         }
     }
 

@@ -13134,7 +13134,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1274131089}
-  - component: {fileID: 1274131088}
   - component: {fileID: 1274131092}
   - component: {fileID: 1274131087}
   - component: {fileID: 1274131090}
@@ -13165,24 +13164,6 @@ MonoBehaviour:
   ShinyFigurinePrefab: {fileID: 2636275227416602688, guid: 2efb14ca086629a44938d086cef1b166,
     type: 3}
   inWater: 0
---- !u!143 &1274131088
-CharacterController:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1274131086}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Height: 2
-  m_Radius: 0.5
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &1274131089
 Transform:
   m_ObjectHideFlags: 0
