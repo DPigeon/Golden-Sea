@@ -15,6 +15,7 @@ public class Underwater : MonoBehaviour {
         normalColor = new Color(0.5F, 0.5F, 0.5F, 0.5F);
         underwaterColor = new Color(0.22F, 0.65F, 0.77F, 0.5F);
         player = GetComponent<PlayerController>();
+        GameObject.Find("CausticEffectProjector").GetComponent<Projector>().enabled = false; // No caustic when starting
     }
 
     void Update() {
@@ -37,11 +38,13 @@ public class Underwater : MonoBehaviour {
         RenderSettings.fogColor = underwaterColor;
         RenderSettings.fogDensity = 0.030F; // Will have to change
         player.inWater = true;
+        GameObject.Find("CausticEffectProjector").GetComponent<Projector>().enabled = true;
     }
 
     private void SetNormalColor() {
         RenderSettings.fogColor = normalColor;
         RenderSettings.fogDensity = 0.0005F;
         player.inWater = false;
+        GameObject.Find("CausticEffectProjector").GetComponent<Projector>().enabled = false;
     }
 }
