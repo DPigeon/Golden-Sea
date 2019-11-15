@@ -13159,11 +13159,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   horizontalInput: HorizontalX
   verticalInput: VerticalY
-  movementSpeed: 100
+  movementSpeed: 500
   cameraView: {fileID: 534669904}
   ShinyFigurinePrefab: {fileID: 2636275227416602688, guid: 2efb14ca086629a44938d086cef1b166,
     type: 3}
   inWater: 0
+  nitroTankInventory: 0
+  nitroActive: 0
 --- !u!4 &1274131089
 Transform:
   m_ObjectHideFlags: 0
@@ -20138,7 +20140,9 @@ MonoBehaviour:
     type: 3}
   OxygenTankPrefab: {fileID: 4851037850394337904, guid: 8bed9442fffd58e4d86062b02cb5304f,
     type: 3}
-  variantSpecial: 0
+  GoldenOxygenTankPrefab: {fileID: 4442206753148101762, guid: beb62eb8dbf7a354d8d3c2e86b4937a1,
+    type: 3}
+  variantSpecial: 1
   enemies: []
 --- !u!4 &1816744544
 Transform:

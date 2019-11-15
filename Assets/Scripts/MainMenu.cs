@@ -14,6 +14,6 @@ public class MainMenu : MonoBehaviour {
 	}
 
     public void SelectMode(bool mode) {
-        //ModeSelection.mode = mode;
+        ModeSelection.mode = mode;
     }
 }

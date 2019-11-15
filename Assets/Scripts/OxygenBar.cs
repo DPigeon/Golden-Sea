@@ -9,8 +9,8 @@ public class OxygenBar : MonoBehaviour {
     int index;
     int barSize = 7;
 
-    float nextTimer = 5.0F;
-    float timerRate = 5.0F;
+    float nextTimer = 10.0F;
+    float timerRate = 10.0F;
 
     RawImage[] oxygenBar; // Array of portions of the sword bar
 

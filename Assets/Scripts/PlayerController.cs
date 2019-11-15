@@ -38,6 +38,11 @@ public class PlayerController : MonoBehaviour {
     LifeGenerator lifeGenerator = null;
 
     public bool inWater;
+    public bool nitroTankInventory;
+    public bool nitroActive;
+    float nitroTimer;
+    float nitroDuration = 3.0F; // 3 seconds
+    bool nitroActivateTimer;
 
     void Start() {
         boat = GameObject.Find("Boat").GetComponent<Boat>();
@@ -138,6 +143,27 @@ public class PlayerController : MonoBehaviour {
                 throwingTimer = 0.0F;
             }
         }
+
+        if (nitroActive && Input.GetButton("Boost") && !dead) {
+            nitroActive = false;
+            nitroActivateTimer = true;
+            nitroTankInventory = false;
+            // Invicible power
+            //nitroSound.Play();
+            IncreaseSpeed(100.0F);
+        }
+        if (nitroActivateTimer)
+            nitroTimer += Time.deltaTime;
+        if (nitroTimer >= nitroDuration && !dead) {
+            ResetNitroTankEffect();
+        }
+
+    }
+
+    private void ResetNitroTankEffect() {
+        nitroActivateTimer = false;
+        nitroTimer = 0.0f;
+        ResetSpeed();
     }
 
     void OnTriggerEnter(Collider collider) {
@@ -176,7 +202,11 @@ public class PlayerController : MonoBehaviour {
     }
 
     public void ResetSpeed() {
-        movementSpeed = 5.0F;
+        movementSpeed = 100.0F;
     }
 
+    public void ActivateNitro() {
+        nitroActive = true;
+        //collectNitroSound.Play();
+    }
 }

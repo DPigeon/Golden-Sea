@@ -10,8 +10,6 @@ public class GoldenItem : MonoBehaviour {
     RawImage MediumGoldenBar = null;
     [SerializeField]
     RawImage GoldenLot = null;
-    /*[SerializeField]
-    GameObject NitroTank = null;*/
 
     PlayerController player;
     Boat boat;
@@ -69,12 +67,12 @@ public class GoldenItem : MonoBehaviour {
                 player.DecreaseSpeed(speedDecreaseLot);
                 Destroy(gameObject);
             }
-            /*if (gameObject.name == "Nitro Tank(Clone)" && player.nitroTankInventory.Count == 0) {
+            if (gameObject.name == "GoldenOxygenTank(Clone)" && !player.nitroTankInventory) {
+                Debug.Log("hi");
                 player.ActivateNitro();
-                GameObject nitroTank = Instantiate(NitroTank, nitroCollectedPosition, Quaternion.identity) as GameObject;
-                player.nitroTankInventory.Add(nitroTank);
+                player.nitroTankInventory = true;
                 Destroy(gameObject);
-            }*/
+            }
         }
     }
 }

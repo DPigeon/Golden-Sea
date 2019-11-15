@@ -9,16 +9,15 @@ public class ItemSpawner : MonoBehaviour {
     GameObject MediumGoldenBarPrefab = null;
     [SerializeField]
     GameObject GoldenLotPrefab = null;
-    /*[SerializeField]
-    GameObject NitroTankPrefab = null;*/
     [SerializeField]
     GameObject BubbleOxygenTankPrefab = null;
     [SerializeField]
     GameObject OxygenTankPrefab = null;
+    [SerializeField]
+    GameObject GoldenOxygenTankPrefab = null;
 
     public bool variantSpecial;
 
-    //Boat boat;
     Vector3 spawnedPosition;
     Vector3 rotation;
     float randomX;
@@ -38,14 +37,13 @@ public class ItemSpawner : MonoBehaviour {
     float aliveSmallBarTime = 9.3F;
     float aliveMediumBarTime = 7.7f;
     float aliveBagTime = 4.5f;
-    float aliveNitroTankTime = 4.0f;
+    float aliveNitroTankTime = 10.0f;
     float aliveBubbleOxygenTank = 12.0F;
     float aliveOxygenTank = 16.0F;
     public List<GameObject> enemies = new List<GameObject>(); // Enemies stored here
 
     void Start() {
-        //boat = GameObject.Find("Boat").GetComponent<Boat>();
-        //variantSpecial = true;
+        variantSpecial = true;
         //variantSpecial = ModeSelection.mode;
         VariantVariationSpawn();
     }
@@ -92,8 +90,8 @@ public class ItemSpawner : MonoBehaviour {
                 float y = Random.Range(-coordsX, coordsX);
                 float z = Random.Range(-coordsZ, coordsZ);
                 Vector3 nitroSpawn = new Vector3(x, y, z);
-                /*GameObject nitroTank = Instantiate(NitroTankPrefab, nitroSpawn, Quaternion.identity) as GameObject;
-                Destroy(nitroTank, aliveNitroTankTime);*/
+                GameObject nitroTank = Instantiate(GoldenOxygenTankPrefab, nitroSpawn, Quaternion.identity) as GameObject;
+                Destroy(nitroTank, aliveNitroTankTime);
             }
         }
     }
@@ -120,6 +118,6 @@ public class ItemSpawner : MonoBehaviour {
 
     private void VariantVariationSpawn() {
         if (variantSpecial)
-            nitroSpawnRate = Random.Range(3, 5); // Spawns in between 10 to 30 seconds
+            nitroSpawnRate = Random.Range(4, 6);
     }
 }
