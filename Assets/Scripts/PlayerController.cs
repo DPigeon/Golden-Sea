@@ -14,6 +14,8 @@ public class PlayerController : MonoBehaviour {
     [SerializeField]
     GameObject ShinyFigurinePrefab = null;
 
+    float dragVariable = 1.0F;
+
     bool isHurt;
 
     bool dead;
@@ -56,31 +58,38 @@ public class PlayerController : MonoBehaviour {
     }
 
     private void PlayerControls() {
-        if (inWater && gravity < 0.01F)
-            gravity += IsInWater(inWater) * Time.deltaTime;
+        if (inWater)
+            rigidbody.useGravity = false;
+        //gravity += IsInWater(inWater) * Time.deltaTime;
+        else
+            rigidbody.useGravity = true;
         if (!inWater || FindObjectOfType<GameInterfaces>().isPaused || FindObjectOfType<GameInterfaces>().gameEnded)
             gravity = 0.0F;
         
         // When character is grounded, move normally
-        if (playerController.isGrounded || !inWater) {
+        /*if (playerController.isGrounded || !inWater) {
             float horizontal = Input.GetAxis(horizontalInput) * movementSpeed;
             float vertical = Input.GetAxis(verticalInput) * movementSpeed;
             Vector3 right = transform.right * horizontal;
             Vector3 forward = transform.forward * vertical;
             // Add fluid movement in water later here
             playerController.Move(right + forward);
-        }
+        }*/
 
         Vector3 gravityMovement = new Vector3(0.0F, gravity, 0.0F);
-        playerController.Move(gravityMovement); // Moves our component
+        //playerController.Move(gravityMovement); // Moves our component
 
         if (Input.GetButtonDown("Swim") && !swimming) {
             Vector3 constantForce = cameraView.transform.forward * 2.0F;
-            playerController.Move(constantForce);
+            rigidbody.AddForce(constantForce * Time.deltaTime * movementSpeed, ForceMode.Impulse);
+
             gravity = 0.0F;
             swimming = true;
             stopForce = false;
         }
+
+        rigidbody.drag = rigidbody.velocity.magnitude * dragVariable;
+
         if (Input.GetButtonUp("Swim")) {
             stopForce = true;
         }
