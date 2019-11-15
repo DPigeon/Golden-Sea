@@ -74,21 +74,16 @@ public class PlayerController : MonoBehaviour {
         Vector3 gravityMovement = new Vector3(0.0F, gravity, 0.0F);
         playerController.Move(gravityMovement); // Moves our component
 
-        if (Input.GetButtonDown("Swim") && !swimming && inWater) {
+        if (Input.GetButtonDown("Swim") && !swimming) {
             Vector3 constantForce = cameraView.transform.forward * 2.0F;
             playerController.Move(constantForce);
             gravity = 0.0F;
             swimming = true;
             stopForce = false;
         }
-        if (Input.GetButtonUp("Swim") && inWater) {
+        if (Input.GetButtonUp("Swim")) {
             stopForce = true;
         }
-        /*if (Input.GetKey(KeyCode.C) && inWater) {
-            Vector3 constantForce = new Vector3(0.0F, 200.0F / 5000F, 0.0F);
-            playerController.Move(constantForce);
-            gravity = 0.0F; // Reseting gravity
-        }*/
         if (Input.GetButton("Pause")) {
             FindObjectOfType<GameInterfaces>().PauseTheGame();
         }
