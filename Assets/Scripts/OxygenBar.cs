@@ -22,6 +22,7 @@ public class OxygenBar : MonoBehaviour {
 
     void Update() {
         Underwater();
+        //Debug.Log(index);
     }
 
     public void Underwater() {
@@ -38,7 +39,7 @@ public class OxygenBar : MonoBehaviour {
     public void IncreaseOxygen(int indexPosition) {
         for (int i = 0; i < indexPosition; i++) {
             if (index < maxOxygen) {
-                oxygenBar[index].enabled = true;
+                oxygenBar[barSize - index].enabled = true;
                 index++;
             }
         }
@@ -58,7 +59,8 @@ public class OxygenBar : MonoBehaviour {
         for (int i = 0; i < indexPosition; i++) {
             if (index >= 0) {
                 oxygenBar[barSize - index].enabled = false;
-                index--;
+                if (index != 0)
+                    index--;
             }
         }
     }

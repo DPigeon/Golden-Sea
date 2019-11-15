@@ -37,7 +37,7 @@ public class PlayerController : MonoBehaviour {
 
     // Buoyancy variables
     float gravity = 0.0F;
-    float gravityInWater = 2.0F / 1000F;
+    float gravityInWater = 2.0F / 5000F;
     float gravityOutsideWater = 9.81F / 100F;
     public bool inWater;
 
