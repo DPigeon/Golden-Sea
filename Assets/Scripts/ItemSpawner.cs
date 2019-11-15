@@ -43,8 +43,8 @@ public class ItemSpawner : MonoBehaviour {
     public List<GameObject> enemies = new List<GameObject>(); // Enemies stored here
 
     void Start() {
-        variantSpecial = true;
-        //variantSpecial = ModeSelection.mode;
+        //variantSpecial = true;
+        variantSpecial = ModeSelection.mode;
         VariantVariationSpawn();
     }
 

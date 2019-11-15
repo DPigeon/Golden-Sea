@@ -20,9 +20,8 @@ public class SharpObject : Projectile {
     }
 
     void OnTriggerEnter(Collider col) {
-        LifeGenerator playerLife = GameObject.Find("LifeHandler").GetComponent<LifeGenerator>();
-        if (col.gameObject.name == "Player") {
-            playerLife.RemoveLife();
+        if (col.gameObject.name == "Fish(Clone)") {
+            // Collision with another npc
             Destroy(gameObject);
         }
     }

@@ -38,7 +38,7 @@ public class Underwater : MonoBehaviour {
 
     private void SetUnderwater() {
         RenderSettings.fogColor = underwaterColor;
-        RenderSettings.fogDensity = 0.030F; // Will have to change
+        //RenderSettings.fogDensity = 0.030F; // Will have to change
         player.inWater = true;
         bubbles.Play();
         GameObject.Find("CausticEffectProjector").GetComponent<Projector>().enabled = true;

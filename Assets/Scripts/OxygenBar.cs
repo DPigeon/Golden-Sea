@@ -14,10 +14,16 @@ public class OxygenBar : MonoBehaviour {
 
     RawImage[] oxygenBar; // Array of portions of the sword bar
 
+    AudioSource barUp;
+    AudioSource barDown;
+
     void Start() {
         oxygenBar = transform.Find("Bar").GetComponentsInChildren<RawImage>(); 
         maxOxygen = oxygenBar.Length;
         index = oxygenBar.Length - 1;
+        AudioSource[] audioSources = GetComponents<AudioSource>();
+        barUp = audioSources[0];
+        barDown = audioSources[1];
     }
 
     void Update() {
@@ -36,6 +42,7 @@ public class OxygenBar : MonoBehaviour {
     }
 
     public void IncreaseOxygen(int indexPosition) {
+        barUp.Play();
         for (int i = 0; i < indexPosition; i++) {
             if (index < maxOxygen) {
                 oxygenBar[barSize - index].enabled = true;
@@ -56,6 +63,7 @@ public class OxygenBar : MonoBehaviour {
     }
 
     public void DecreaseOxygen(int indexPosition) {
+        barDown.Play();
         for (int i = 0; i < indexPosition; i++) {
             if (index >= 0) {
                 oxygenBar[barSize - index].enabled = false;

@@ -44,10 +44,26 @@ public class PlayerController : MonoBehaviour {
     float nitroDuration = 3.0F; // 3 seconds
     bool nitroActivateTimer;
 
+    AudioSource throwFiguringSound;
+    AudioSource playerHurtSound;
+    AudioSource playerDieSound;
+    AudioSource collectNitroTankSound;
+    AudioSource nitroTankSound;
+    AudioSource waterSurface;
+    AudioSource swimSubmarineSound;
+
     void Start() {
         boat = GameObject.Find("Boat").GetComponent<Boat>();
         lifeGenerator = GameObject.Find("LifeHandler").GetComponent<LifeGenerator>();
         rigidbody = GetComponent<Rigidbody>();
+        AudioSource[] audioSources = GetComponents<AudioSource>();
+        throwFiguringSound = audioSources[0];
+        playerHurtSound = audioSources[1];
+        playerDieSound = audioSources[2];
+        collectNitroTankSound = audioSources[3];
+        nitroTankSound = audioSources[4];
+        waterSurface = audioSources[5];
+        swimSubmarineSound = audioSources[6];
     }
 
     void Update() {
@@ -58,7 +74,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     private void PlayerControls() {
-        if (inWater)
+        if (inWater && !dead)
             rigidbody.useGravity = false;
         else
             rigidbody.useGravity = true;
@@ -78,6 +94,7 @@ public class PlayerController : MonoBehaviour {
             rigidbody.AddForce(constantForce * Time.deltaTime * movementSpeed, ForceMode.Impulse);
             swimming = true;
             stopForce = false;
+            swimSubmarineSound.Play();
         }
 
         // Drag
@@ -95,7 +112,7 @@ public class PlayerController : MonoBehaviour {
         if (Input.GetButtonDown("Throw") && !throwing) {
             throwing = true;
             GameObject shinyFigurine = Instantiate(ShinyFigurinePrefab, transform.position, Quaternion.identity) as GameObject;
-            //projectileSound.Play();
+            throwFiguringSound.Play();
             Destroy(shinyFigurine, projectileDuration);
         }
     }
@@ -112,10 +129,10 @@ public class PlayerController : MonoBehaviour {
             transform.position = new Vector3(limit, transform.position.y, transform.position.z);
         else if (transform.position.x > limit)
             transform.position = new Vector3(-limit, transform.position.y, transform.position.z);
-        else if (transform.position.y > 25.0F) { // When on top of water, don't go out
+        else if (transform.position.y > 25.0F || transform.position.y < -25.0F) // When on top of water, don't go out
             rigidbody.velocity = Vector3.zero;
-            // play some sound here for out of water
-        }
+        else if (transform.position.y > 24.0F)
+            waterSurface.Play();
     }
 
     private void HandleTimers() {
@@ -124,7 +141,7 @@ public class PlayerController : MonoBehaviour {
             if (deadTimer > deadDuration) {
                 dead = false;
                 deadTimer = 0.0f;
-                //FindObjectOfType<GameInterfaces>().EndTheGame();
+                FindObjectOfType<GameInterfaces>().EndTheGame();
             }
         }
 
@@ -149,7 +166,7 @@ public class PlayerController : MonoBehaviour {
             nitroActivateTimer = true;
             nitroTankInventory = false;
             // Invicible power
-            //nitroSound.Play();
+            nitroTankSound.Play();
             IncreaseSpeed(100.0F);
         }
         if (nitroActivateTimer)
@@ -167,11 +184,13 @@ public class PlayerController : MonoBehaviour {
     }
 
     void OnTriggerEnter(Collider collider) {
-        if (collider.gameObject.name == "Fish(Clone)" || collider.gameObject.name == "Whale(Clone)") {
+        if (collider.gameObject.name == "Fish(Clone)" || collider.gameObject.name == "Whale(Clone)" || collider.gameObject.name == "WhaleProjectile(Clone)") {
+            if (collider.gameObject.name == "WhaleProjectile(Clone)")
+                Destroy(collider.gameObject);
             if (lifeGenerator.lives.Count == 2) {
                 lifeGenerator.RemoveLife();
                 isHurt = true;
-                //hurtSound.Play();
+                playerHurtSound.Play();
             }
             else if (lifeGenerator.lives.Count == 1) {
                 if (boat.items.Count != 0) {
@@ -187,10 +206,9 @@ public class PlayerController : MonoBehaviour {
     }
 
     private void Die() {
-        //dieSound.Play();
+        playerDieSound.Play();
         dead = true;
-        transform.localScale = new Vector3(0, 0, 0); // Hide player (deleted and dead)
-        //bubbles.Stop();
+        rigidbody.useGravity = true; // Drowns in water
     }
 
     public void IncreaseSpeed(float number) {
@@ -207,6 +225,6 @@ public class PlayerController : MonoBehaviour {
 
     public void ActivateNitro() {
         nitroActive = true;
-        //collectNitroSound.Play();
+        collectNitroTankSound.Play();
     }
 }

@@ -12,12 +12,12 @@ public class GameInterfaces : MonoBehaviour {
     public bool isPaused = false;
     public bool gameEnded = false;
 
-    //AudioSource gameOverSound;
+    AudioSource gameOverSound;
 
     void Start() {
         //CursorHandling();
-        //AudioSource[] audioSources = GetComponents<AudioSource>();
-        //gameOverSound = audioSources[0];
+        AudioSource[] audioSources = GetComponents<AudioSource>();
+        gameOverSound = audioSources[0];
     }
 
     void CursorHandling() {
@@ -53,7 +53,7 @@ public class GameInterfaces : MonoBehaviour {
     private void ShowGameOverInterface() {
         gameOverUI.SetActive(true);
         Time.timeScale = 0.0F; // Freezing the game
-        //gameOverSound.Play();
+        gameOverSound.Play();
     }
 
     public void ContinuePlaying() {
