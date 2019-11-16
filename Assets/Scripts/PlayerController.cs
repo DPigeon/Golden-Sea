@@ -90,6 +90,7 @@ public class PlayerController : MonoBehaviour {
         }
 
         if (Input.GetButtonDown("Swim") && !swimming) {
+            cameraView = GameObject.Find("PlayerCamera").GetComponent<Camera>(); // Update camera for 1st & 3rd
             Vector3 constantForce = cameraView.transform.forward * 2.0F;
             rigidbody.AddForce(constantForce * Time.deltaTime * movementSpeed, ForceMode.Impulse);
             swimming = true;
