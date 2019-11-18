@@ -7,20 +7,18 @@ public class CameraSwitch : MonoBehaviour {
     public GameObject thirdPersonCamera ; // 0
     [SerializeField]
     public GameObject firstPersonCamera; // 1
-
+	
     public int cameraMode;
 
     void Start() {
-        cameraMode = 0;
+        cameraMode = 1; // Start with first person camera
     }
 
     void Update() {
-        if (Input.GetButtonDown("CameraSwitch")) {
-            if (cameraMode == 1)
+        if (Input.GetButtonDown("CameraSwitch")) 
                 cameraMode = 0;
-            else
+        else if (Input.GetButtonUp("CameraSwitch")) 
                 cameraMode += 1;
-        }
         StartCoroutine(CameraChange());
     }
 

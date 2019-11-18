@@ -34,9 +34,9 @@ public class ItemSpawner : MonoBehaviour {
     float nextTankSpawn = 0.0F;
     float spawnTankRate = 2.0F;
     float randomTank;
-    float aliveSmallBarTime = 9.3F;
-    float aliveMediumBarTime = 7.7f;
-    float aliveBagTime = 4.5f;
+    float aliveSmallBarTime = 18.3F;
+    float aliveMediumBarTime = 14.7f;
+    float aliveBagTime = 8.5f;
     float aliveNitroTankTime = 10.0f;
     float aliveBubbleOxygenTank = 12.0F;
     float aliveOxygenTank = 16.0F;
