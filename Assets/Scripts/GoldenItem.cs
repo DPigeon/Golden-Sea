@@ -67,7 +67,7 @@ public class GoldenItem : MonoBehaviour {
                 player.DecreaseSpeed(speedDecreaseLot);
                 Destroy(gameObject);
             }
-            if (gameObject.name == "GoldenOxygenTank(Clone)" && !player.nitroTankInventory) {
+            if (gameObject.name == "GoldenOxygenTank" && !player.nitroTankInventory) {
                 Debug.Log("hi");
                 player.ActivateNitro();
                 player.nitroTankInventory = true;

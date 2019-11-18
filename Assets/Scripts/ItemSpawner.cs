@@ -37,7 +37,7 @@ public class ItemSpawner : MonoBehaviour {
     float aliveSmallBarTime = 18.3F;
     float aliveMediumBarTime = 14.7f;
     float aliveBagTime = 8.5f;
-    float aliveNitroTankTime = 10.0f;
+    float aliveNitroTankTime = 30.0f; // 10 before
     float aliveBubbleOxygenTank = 12.0F;
     float aliveOxygenTank = 16.0F;
     public List<GameObject> enemies = new List<GameObject>(); // Enemies stored here

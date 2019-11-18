@@ -142,7 +142,7 @@ public class PlayerController : MonoBehaviour {
             if (deadTimer > deadDuration) {
                 dead = false;
                 deadTimer = 0.0f;
-                FindObjectOfType<GameInterfaces>().EndTheGame();
+                //FindObjectOfType<GameInterfaces>().EndTheGame();
             }
         }
 
@@ -168,7 +168,7 @@ public class PlayerController : MonoBehaviour {
             nitroTankInventory = false;
             // Invicible power
             nitroTankSound.Play();
-            IncreaseSpeed(100.0F);
+            IncreaseSpeed(3000.0F);
         }
         if (nitroActivateTimer)
             nitroTimer += Time.deltaTime;
@@ -221,7 +221,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     public void ResetSpeed() {
-        movementSpeed = 100.0F;
+        movementSpeed = 500.0F;
     }
 
     public void ActivateNitro() {

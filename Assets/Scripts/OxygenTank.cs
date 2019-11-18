@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class OxygenTank : MonoBehaviour {
+	
+	PlayerController player;
+	
     // Rotates and moves up and down
     float angle = 220.0F;
     float frequency = 1F;
@@ -14,6 +17,7 @@ public class OxygenTank : MonoBehaviour {
     OxygenBar oxygenBar;
 
     void Start() {
+		player = GameObject.Find("Player").GetComponent<PlayerController>();
         oxygenBar = GameObject.Find("OxygenBar").GetComponent<OxygenBar>();
         positionOffset = transform.position;
     }
@@ -36,6 +40,11 @@ public class OxygenTank : MonoBehaviour {
             }
             if (gameObject.name == "BubbleOxygenTank(Clone)") {
                 oxygenBar.IncreaseOxygen(2); // Generates 2 oxygen bar
+                Destroy(gameObject);
+            }
+			if (gameObject.name == "GoldenOxygenTank" && !player.nitroTankInventory) {
+                player.ActivateNitro();
+                player.nitroTankInventory = true;
                 Destroy(gameObject);
             }
         }
