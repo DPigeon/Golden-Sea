@@ -36,6 +36,7 @@ public class PlayerController : MonoBehaviour {
     Rigidbody rigidbody = null;
     Boat boat = null;
     LifeGenerator lifeGenerator = null;
+	ParticleSystem nitroEffect = null;
 
     public bool inWater;
     public bool nitroTankInventory;
@@ -56,6 +57,8 @@ public class PlayerController : MonoBehaviour {
         boat = GameObject.Find("Boat").GetComponent<Boat>();
         lifeGenerator = GameObject.Find("LifeHandler").GetComponent<LifeGenerator>();
         rigidbody = GetComponent<Rigidbody>();
+		nitroEffect = gameObject.transform.GetChild(3).gameObject.GetComponent<ParticleSystem>();
+		nitroEffect.Stop();
         AudioSource[] audioSources = GetComponents<AudioSource>();
         throwFiguringSound = audioSources[0];
         playerHurtSound = audioSources[1];
@@ -168,6 +171,7 @@ public class PlayerController : MonoBehaviour {
             nitroTankInventory = false;
             // Invicible power
             nitroTankSound.Play();
+			nitroEffect.Play();
             IncreaseSpeed(3000.0F);
         }
         if (nitroActivateTimer)
@@ -182,6 +186,7 @@ public class PlayerController : MonoBehaviour {
         nitroActivateTimer = false;
         nitroTimer = 0.0f;
         ResetSpeed();
+		nitroEffect.Stop();
     }
 
     void OnTriggerEnter(Collider collider) {
