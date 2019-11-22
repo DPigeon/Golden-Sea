@@ -23,9 +23,9 @@ public class ItemSpawner : MonoBehaviour {
     float randomX;
     float randomY;
     float randomZ;
-    float coordsX = 25.0F;
+    float coordsX = 20.0F;
     float coordsY = 20.0F; // For the oxygen tanks
-    float coordsZ = 25.0F;
+    float coordsZ = 20.0F;
     float spawnRate = 2F;
     float nextSpawn = 0.0F;
     float nextNitroSpawn = 0.0F;

@@ -145,7 +145,7 @@ public class PlayerController : MonoBehaviour {
             if (deadTimer > deadDuration) {
                 dead = false;
                 deadTimer = 0.0f;
-                //FindObjectOfType<GameInterfaces>().EndTheGame();
+                FindObjectOfType<GameInterfaces>().EndTheGame();
             }
         }
 

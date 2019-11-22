@@ -42,7 +42,7 @@ public class OxygenTank : MonoBehaviour {
                 oxygenBar.IncreaseOxygen(2); // Generates 2 oxygen bar
                 Destroy(gameObject);
             }
-			if (gameObject.name == "GoldenOxygenTank" && !player.nitroTankInventory) {
+			if (gameObject.name == "GoldenOxygenTank(Clone)" && !player.nitroTankInventory) {
                 player.ActivateNitro();
                 player.nitroTankInventory = true;
                 Destroy(gameObject);
